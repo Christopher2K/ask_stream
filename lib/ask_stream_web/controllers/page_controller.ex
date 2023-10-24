@@ -1,9 +1,9 @@
 defmodule AskStreamWeb.PageController do
   use AskStreamWeb, :controller
 
-  def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    render(conn, :home, layout: false)
-  end
+  def home(conn, _params),
+    do: conn |> put_layout(html: {AskStreamWeb.Layouts, :base_page}) |> render(:home)
+
+  def login(conn, _params),
+    do: conn |> put_layout(html: {AskStreamWeb.Layouts, :base_page}) |> render(:login)
 end

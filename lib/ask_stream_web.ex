@@ -84,8 +84,9 @@ defmodule AskStreamWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import AskStreamWeb.CoreComponents
+      # import AskStreamWeb.CoreComponents
       import AskStreamWeb.Gettext
+      import AskStreamWeb.CustomComponents
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
