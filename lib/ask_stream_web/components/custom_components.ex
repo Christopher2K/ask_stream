@@ -3,7 +3,7 @@ defmodule AskStreamWeb.CustomComponents do
 
   attr :href, :string, default: nil
   attr :class, :string, default: ""
-
+  attr :rest, :global
   slot :inner_block
 
   def button(assigns) do
@@ -17,11 +17,38 @@ defmodule AskStreamWeb.CustomComponents do
 
     ~H"""
     <%= if @href do %>
-      <a href={@href} class={@class}>
+      <a href={@href} class={@class} {@rest}>
         <%= render_slot(@inner_block) %>
       </a>
     <% else %>
-      <button href={@href} class={@class}>
+      <button href={@href} class={@class} {@rest}>
+        <%= render_slot(@inner_block) %>
+      </button>
+    <% end %>
+    """
+  end
+
+  attr :href, :string, default: nil
+  attr :class, :string, default: ""
+  attr :rest, :global
+  slot :inner_block
+
+  def nav_item(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :class,
+        "border-b border-slate-100 bg-neutral-50 px-5 py-3 w-full cursor-pointer" <>
+          "" <> assigns[:class]
+      )
+
+    ~H"""
+    <%= if @href do %>
+      <a href={@href} class={@class} {@rest}>
+        <%= render_slot(@inner_block) %>
+      </a>
+    <% else %>
+      <button href={@href} class={@class} {@rest}>
         <%= render_slot(@inner_block) %>
       </button>
     <% end %>

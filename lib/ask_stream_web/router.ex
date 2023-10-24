@@ -19,6 +19,8 @@ defmodule AskStreamWeb.Router do
 
     get "/", PageController, :home
     get "/login", PageController, :login
+
+    live "/dashboard", DashboardLive
   end
 
   # Other scopes may use custom stacks.
