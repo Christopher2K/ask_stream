@@ -62,7 +62,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :ask_stream, AskStream.Repo,
-  migration_primary_key: [name: :id, type: :uuid],
+  migration_primary_key: false,
   migration_timestamps: [
     type: :utc_datetime,
     inserted_at: :created_at,

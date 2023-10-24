@@ -17,4 +17,18 @@ defmodule AskStream.QAFixtures do
 
     question
   end
+
+  @doc """
+  Generate a session.
+  """
+  def session_fixture(attrs \\ %{}) do
+    {:ok, session} =
+      attrs
+      |> Enum.into(%{
+
+      })
+      |> AskStream.QA.create_session()
+
+    session
+  end
 end
