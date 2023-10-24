@@ -61,6 +61,14 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :ask_stream, AskStream.Repo,
+  migration_primary_key: [name: :id, type: :uuid],
+  migration_timestamps: [
+    type: :utc_datetime,
+    inserted_at: :created_at,
+    updated_at: :updated_at
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
