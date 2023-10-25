@@ -16,13 +16,13 @@ defmodule AskStream.QA.Session do
 
     has_many :questions, Question
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :utc_datetime, inserted_at_source: :created_at)
   end
 
   @doc false
   def changeset(session, attrs) do
     session
-    |> cast(attrs, [:name, :is_archived])
+    |> cast(attrs, [:name, :is_archived, :inserted_at, :updated_at])
     |> validate_required([])
   end
 end

@@ -197,4 +197,17 @@ defmodule AskStream.QA do
   def change_session(%Session{} = session, attrs \\ %{}) do
     Session.changeset(session, attrs)
   end
+
+  @doc """
+  Returns a list of the 3 most recent sessions
+
+  ## Examples
+
+    iex> list_recent_sessions(5)
+    [%Session{}, ...]
+
+  """
+  def list_recent_sessions(count \\ 3) do
+    Repo.all(from Session, order_by: [desc: :created_at], limit: ^count)
+  end
 end

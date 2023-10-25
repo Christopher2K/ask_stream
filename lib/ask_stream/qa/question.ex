@@ -20,13 +20,20 @@ defmodule AskStream.QA.Question do
 
     belongs_to :session, Session
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :utc_datetime, inserted_at_source: :created_at)
   end
 
   @doc false
   def changeset(question, attrs) do
     question
-    |> cast(attrs, [:question, :author_username, :is_skipped, :is_answered])
+    |> cast(attrs, [
+      :question,
+      :author_username,
+      :is_skipped,
+      :is_answered,
+      :created_at,
+      :updated_at
+    ])
     |> validate_required([:question, :author_username])
   end
 end

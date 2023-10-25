@@ -14,7 +14,6 @@ defmodule AskStreamWeb.Layouts do
     </nav>
 
     <main class="flex flex-direction justify-start items-start px-3">
-      <div class="h-[1000px]" />
       <%= @inner_content %>
     </main>
     """
@@ -24,11 +23,12 @@ defmodule AskStreamWeb.Layouts do
     ~H"""
     <nav
       x-data="{ open: false }"
+      @click.outside="open = false"
       class="sticky top-0 flex flex-row justify-between items-center w-full h-16 px-5 mb-5 border-b border-slate-100 bg-white"
     >
       <a href="/" class="font-bold text-xl">AskStream!</a>
 
-      <.button @click="open = !open">
+      <.button @click="open = !open" x-text="open ? 'Close' : 'Menu'">
         Menu
       </.button>
 
@@ -51,12 +51,9 @@ defmodule AskStreamWeb.Layouts do
       </div>
     </nav>
 
-    <main class="flex flex-direction justify-start items-start px-3">
-      <div class="h-[1000px]" />
+    <main class="flex flex-col justify-start items-start px-3 w-full">
       <%= @inner_content %>
     </main>
     """
   end
-
-  ### JS FUNCTIONS
 end
