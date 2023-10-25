@@ -2,6 +2,7 @@ defmodule AskStreamWeb.CustomComponents do
   use Phoenix.Component
 
   attr :href, :string, default: nil
+  attr :navigate, :any, default: nil
   attr :class, :string, default: ""
   attr :rest, :global
   slot :inner_block
@@ -16,15 +17,17 @@ defmodule AskStreamWeb.CustomComponents do
       )
 
     ~H"""
-    <%= if @href do %>
-      <a href={@href} class={@class} {@rest}>
-        <%= render_slot(@inner_block) %>
-      </a>
-    <% else %>
-      <button href={@href} class={@class} {@rest}>
-        <%= render_slot(@inner_block) %>
-      </button>
-    <% end %>
+    <a :if={@href} href={@href} class={@class} {@rest}>
+      <%= render_slot(@inner_block) %>
+    </a>
+
+    <.link :if={@navigate} class={@class} navigate={@navigate} {@rest}>
+      <%= render_slot(@inner_block) %>
+    </.link>
+
+    <button :if={@href == nil && @navigate == nil} href={@href} class={@class} {@rest}>
+      <%= render_slot(@inner_block) %>
+    </button>
     """
   end
 

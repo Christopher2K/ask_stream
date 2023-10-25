@@ -18,9 +18,19 @@ defmodule AskStreamWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    # get "/about", PageController, :about
     get "/login", PageController, :login
+  end
 
-    live "/dashboard", DashboardLive
+  scope "/dashboard", AskStreamWeb do
+    pipe_through :browser
+
+    live "/", DashboardLive
+    live "/sessions/:id", SessionLive
+
+    # get "/sessions", SessionsController, :index
+    # get "/session/new", SessionsController, :create
+    # get "/session/delete", SessionsController, :create
   end
 
   # Other scopes may use custom stacks.

@@ -210,4 +210,11 @@ defmodule AskStream.QA do
   def list_recent_sessions(count \\ 3) do
     Repo.all(from Session, order_by: [desc: :created_at], limit: ^count)
   end
+
+  def get_session(id) do
+    case Repo.get(Session, id) do
+      nil -> {:error, :not_found}
+      data -> {:ok, data}
+    end
+  end
 end

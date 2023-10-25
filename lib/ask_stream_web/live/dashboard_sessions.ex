@@ -24,7 +24,7 @@ defmodule AskStreamWeb.DashboardSessions do
               <p class="text-lg font-medium">
                 <%= session.name %>
               </p>
-              <.button href={"/dashboard/session/#{session.id}"} class="">Details</.button>
+              <.button navigate={~p"/dashboard/sessions/#{session.id}"} class="">Details</.button>
             </article>
           <% end %>
         </div>
